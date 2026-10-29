@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFile,stat} from 'node:fs/promises';
+const html=await readFile('dist/index.html','utf8');
+const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+assert.equal(ids.length,new Set(ids).size,'Duplicate IDs');
+for(const m of html.matchAll(/href="#([^"]+)"/g))assert(ids.includes(m[1]),`Broken anchor: ${m[1]}`);
+assert.deepEqual([...html.matchAll(/<section[^>]+id="([^"]+)"/g)].map(m=>m[1]),['overview','research','community','strategy','communication','outcomes']);
+for(const m of html.matchAll(/aria-labelledby="([^"]+)"/g))assert(ids.includes(m[1]),'Invalid accessible label');
+for(const m of html.matchAll(/(?:src|href)="((?:assets\/[^"#]+)|styles\.css|app\.js)"/g))assert((await stat('dist/'+m[1])).isFile(),`Missing ${m[1]}`);
+for(const m of html.matchAll(/<img\b(?=[^>]*src=)[^>]+>/g))assert(/alt="[^"]+"/.test(m[0])&&/width="/.test(m[0])&&/height="/.test(m[0]),'Image alternatives and dimensions');
+for(const m of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g))assert(m[0].includes('rel="noopener noreferrer"'),'Unsafe external link');
+for(const m of html.matchAll(/href="(https:[^"]+)"/g))assert.equal(new URL(m[1]).protocol,'https:');
+assert.equal([...html.matchAll(/<h1\b/g)].length,1);
+assert(!/mailto:|tel:|password=|token=|participant ID|@gmail\.com/i.test(html),'Private contact or research data');
+assert(html.includes('one participant per layout')&&html.includes('qualitative observations')&&html.includes('historical tool-reported findings'),'Evidence limits missing');
+assert(html.includes('AI assistance:'),'Disclosure missing');
+console.log(`PASS: six sections in approved order; ${ids.length} unique IDs; anchors, local assets, image alternatives, safe links, privacy and evidence limits.`);

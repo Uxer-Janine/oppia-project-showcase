@@ -1,0 +1,9 @@
+{
+  "name": "oppia-project-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Janine Makorre's Oppia research, community and communication contributions",
+  "scripts": {"build":"node scripts/build.mjs","check":"node scripts/check.mjs","preview":"node scripts/serve.mjs"},
+  "engines": {"node": ">=22"}
+}
