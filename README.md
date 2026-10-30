@@ -20,7 +20,7 @@ GitHub Actions builds, checks and deploys `dist/` to GitHub Pages. All asset pat
 
 Structure: Overview → Research & Usability → Community Engagement → Engagement Strategy → Selected Communication Materials → Outcomes & Reflections.
 
-Original work across all five contribution areas is Janine's, as confirmed by her. The case study distinguishes activities, created artifacts, proposed strategies and unverified outcomes. The study involved three participants, one per layout; it does not establish a winning layout. No participant tables, photographs, identifiers, recordings or confidential source documents are stored here. Public images are interface-only research materials and donor templates with placeholder names.
+Original work across all five contribution areas is Janine's, as confirmed by her. The case study distinguishes activities, created artifacts, proposed strategies and unverified outcomes. The study involved three participants, one per layout; it does not establish a winning layout. No raw research participant tables, identifiers, session recordings or confidential source documents are stored here. The Community Engagement section includes the original Of Course Challenge video and a poster frame, with public-use permission confirmed by Janine for every identifiable child's images and voice. Other images are interface-only research materials and donor templates with placeholder names.
 
 See `assets/PROVENANCE.md` for artifact sources. The public page links to the original working folders at the owner's request. Their access remains governed by Google Drive; no sharing settings were changed.
 

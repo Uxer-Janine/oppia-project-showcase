@@ -14,4 +14,7 @@ assert.equal([...html.matchAll(/<h1\b/g)].length,1);
 assert(!/mailto:|tel:|password=|token=|participant ID|@gmail\.com/i.test(html),'Private contact or research data');
 assert(html.includes('one participant per layout')&&html.includes('my observations from the sessions, rather than measured learning gains')&&html.includes('what the tool reported at the time'),'Evidence limits missing');
 assert(html.includes('AI assistance:'),'Disclosure missing');
+const video=html.match(/<video\b[^>]*>[\s\S]*?<\/video>/)?.[0];
+assert(video&&/\bcontrols\b/.test(video)&&/\bplaysinline\b/.test(video)&&/preload="none"/.test(video)&&!/\bautoplay\b/.test(video),'Video must have controls, inline playback and no autoplay/preloading');
+assert(video.includes('assets/of-course-challenge.mp4')&&video.includes('assets/of-course-poster.jpg'),'Original video and poster required');
 console.log(`PASS: six sections in approved order; ${ids.length} unique IDs; anchors, local assets, image alternatives, safe links, privacy and evidence limits.`);
