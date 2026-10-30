@@ -12,6 +12,6 @@ for(const m of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g))assert(m[0].incl
 for(const m of html.matchAll(/href="(https:[^"]+)"/g))assert.equal(new URL(m[1]).protocol,'https:');
 assert.equal([...html.matchAll(/<h1\b/g)].length,1);
 assert(!/mailto:|tel:|password=|token=|participant ID|@gmail\.com/i.test(html),'Private contact or research data');
-assert(html.includes('one participant per layout')&&html.includes('qualitative observations')&&html.includes('historical tool-reported findings'),'Evidence limits missing');
+assert(html.includes('one participant per layout')&&html.includes('my observations from the sessions, rather than measured learning gains')&&html.includes('what the tool reported at the time'),'Evidence limits missing');
 assert(html.includes('AI assistance:'),'Disclosure missing');
 console.log(`PASS: six sections in approved order; ${ids.length} unique IDs; anchors, local assets, image alternatives, safe links, privacy and evidence limits.`);
